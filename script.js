@@ -143,3 +143,94 @@ const buttons = [
     ],
 ];
 
+let lang = localStorage.lang === 'en'  ? 'en' : 'ru';
+
+
+fillKeyboard();
+
+function changeLanguage() {
+    lang = (lang === 'ru') ? 'en' : 'ru';
+    fillKeyboard();
+    save(lang);
+}
+
+function fillKeyboard() {
+    for (let i = 0; i < keyboard.children.length; i++) {
+        for (let j = 0; j < keyboard.children[i].children.length; j++) {
+            let currentButton = keyboard.children[i].children[j];
+            keyboard.children[i].children[j].dataset.code = buttons[i][j].code;
+            keyboard.children[i].children[j].dataset.en = buttons[i][j].en;
+            keyboard.children[i].children[j].dataset.ru = buttons[i][j].ru;
+            keyboard.children[i].children[j].dataset.printable = buttons[i][j].printable;
+            keyboard.children[i].children[j].textContent = buttons[i][j][lang];
+        }
+    }
+}
+
+
+function save(lang) {
+    if (window.localStorage) {
+        localStorage.lang = lang;
+    }
+}
+
+function bcksps() { 
+    textarea.innerText = textarea.value.substring(0,  textarea.value.length - 1);
+}
+
+const body = document.querySelector('body')
+
+body.addEventListener('keydown', (event) => {
+    let currentElement = document.querySelector(`[data-code="${event.code}"]`);
+
+    currentElement.classList.add('pressed');
+    printLetter(currentElement);
+})
+
+body.addEventListener('keyup', (event) => {
+    document.querySelector(`[data-code="${event.code}"]`).classList.remove('pressed');
+})
+
+keyboard.addEventListener('click', event => {
+    if (event.target.classList.contains('key')) {
+        printLetter(event.target);
+    }
+})
+
+function printLetter(currentElement) {
+
+    if (currentElement.dataset.code === 'Backspace') {
+        bcksps();
+        return;
+    }
+
+    if (currentElement.dataset.printable === 'false') {
+        return;
+    }
+
+    let letter = (lang === 'en') ? currentElement.dataset.en : currentElement.dataset.ru;
+
+    textarea.textContent = textarea.textContent + letter;
+}
+
+let firstKey;
+
+body.addEventListener('keydown', (event) => {
+    event.preventDefault();
+
+    if ((firstKey === 16 && event.keyCode === 18) || (firstKey === 18 && event.keyCode === 16)) {
+        changeLanguage();
+        firstKey = undefined;
+        return;
+    }
+
+    if (event.keyCode === 16 || event.keyCode === 18) {
+        firstKey = event.keyCode;
+    }
+})
+
+body.addEventListener('keyup', (event) => {
+    if (event.keyCode === 16 || event.keyCode === 18) {
+        firstKey = undefined;
+    }
+})
