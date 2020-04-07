@@ -1,0 +1,128 @@
+body{
+    background-color: black;
+}
+
+.textarea {    
+    position: relative;
+    top: 3vw;
+    width: 51vw;
+    left: 23.5vw;    
+    height: 18vw;
+    margin-bottom: 3.8vw;
+    border: 1px solid greenyellow;
+    border-radius: 0.4vw;
+    font-family: sans-serif;
+    font-size: 1.5vw; 
+    font-weight: 600;
+    background-color: black;
+    color: red;
+    padding: 1vw;
+    resize: none;
+}
+
+.keyboard {
+    position: absolute;
+    width: 51vw;
+    height: 18vw;
+    left: 24vw;    
+    top: 25vw;
+    background: black;
+    border: 1px solid greenyellow;
+    border-radius: 0.4vw;
+    padding: 1vw 1vw;
+    color: greenyellow;
+    font-family: sans-serif;
+}
+
+.info {
+    position: absolute;
+    text-align: center;
+    font-size: 2vw;
+    width: 30vw;
+    left: 35vw;
+    top: 48vw;
+    color: red;
+    font-family: sans-serif;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 0.4vw;
+}
+
+.row:last-child {
+    margin-bottom: 0;
+}
+
+.key {
+    width: 3vw;
+    height: 3vw;
+    margin-right: 0.4vw;
+    background: linear-gradient(#3B3B3B, #070707);
+    border: 1px solid yellowgreen;
+    border-radius: 3px;
+    box-shadow: 0 0 0 2px #000000;
+    text-align: center;
+    line-height: 3.4vw;
+    font-size: 1vw;
+}
+
+.key:last-child {
+    margin-right: 0;
+}
+
+.key:hover {
+    background: linear-gradient(#878686, white);
+    cursor: pointer;
+}
+
+.backspace {
+    width: 110px;
+    color: yellowgreen;    
+}
+
+.tab {
+    width: 52px;
+    color: red;
+}
+
+.del {
+    width: 49px;
+    color: red;
+}
+
+.capslock {
+    width: 82px;
+    color: red;
+}
+
+.enter {
+    width: 117px;
+    color: red;
+}
+
+.left-shift {
+    width: 64px;
+    color: red;
+}
+
+.right-shift {
+    width: 89px;
+    color: red;
+}
+
+.space {
+    width: 355px;
+    color: red;
+}
+
+.arrow {
+    font-size: 10px;    
+}
+
+.pressed {
+    background: linear-gradient(#878686, white);
+    border-radius: 15px;
+    transform: translate(1px, 1px);
+    transition: all 0.5s ease 0s;
+}
